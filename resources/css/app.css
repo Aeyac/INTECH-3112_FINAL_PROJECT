@@ -1,9 +1,34 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+/*
+ | Tailwind v4 is configured directly in CSS (no tailwind.config.js).
+ | The original project shipped Tailwind v4 via the standalone CLI
+ | (`@import "tailwindcss"` in src/input.css) with no custom theme, so the
+ | default palette/spacing/fonts are preserved here. We only add explicit
+ | source paths so classes inside the React pages and Blade views are detected.
+ */
+@source '../js/**/*.{js,jsx}';
+@source '../views/**/*.blade.php';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+/* Reusable component classes extracted from the original markup. */
+@layer components {
+    .ss-input {
+        @apply w-full rounded-lg border border-slate-200 px-3.5 py-2.5 text-sm font-medium text-slate-800 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20;
+    }
+
+    .ss-input-error {
+        @apply border-rose-500 focus:border-rose-500 focus:ring-rose-500/20;
+    }
+
+    .ss-label {
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-slate-600;
+    }
+
+    .ss-btn-primary {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-black px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-gray-800 active:scale-95;
+    }
+
+    .ss-btn-secondary {
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50;
+    }
 }
