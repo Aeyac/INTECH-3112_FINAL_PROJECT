@@ -41,4 +41,9 @@ class SaleItem extends Model
         return $this->belongsTo(Item::class);
     }
 
+    public function getItemNameAttribute(): ?string
+    {
+        return $this->item?->name;
+    }
+
 }

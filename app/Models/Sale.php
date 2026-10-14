@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Sale extends Model
 {
@@ -35,4 +37,8 @@ class Sale extends Model
         return $this->hasMany(SaleItem::class);
     }
 
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query->where('user_id', $user->workspaceId());
+    }
 }

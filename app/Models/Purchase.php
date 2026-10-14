@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Purchase extends Model
 {
@@ -45,5 +47,15 @@ class Purchase extends Model
         return $this->hasMany(PurchaseItem::class);
     }
 
+
+    public function getSupplierNameAttribute(): ?string
+    {
+        return $this->supplier?->name;
+    }
+
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query->where('user_id', $user->workspaceId());
+    }
 
 }

@@ -20,3 +20,7 @@ export function formatMoney(amount) {
         maximumFractionDigits: 2,
     })}`;
 }
+
+export function today() {
+    return new Date().toISOString().slice(0, 10);
+}
