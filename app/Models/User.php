@@ -63,6 +63,10 @@ class User extends Authenticatable
         return $this->hasMany(Sale::class);
     }
 
+    public function workspaceId(): int
+    {
+        return $this->owner_id ?? $this->id;
+    }
 
     public function isAdmin(): bool
     {

@@ -1,4 +1,4 @@
-import FlashToasts from "../components/FlashToasts";
+import FlashToasts from "../Components/FlashToasts";
 
 export default function AuthLayout({ children }) {
     return (

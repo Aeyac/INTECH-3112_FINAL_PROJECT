@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Item extends Model
 {
@@ -57,6 +59,16 @@ class Item extends Model
     public function stockLedger(): HasMany
     {
         return $this->hasMany(StockLedger::class);
+    }
+
+    public function getCategoryNameAttribute(): ?string
+    {
+        return $this->category?->name;
+    }
+
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query->where('user_id', $user->workspaceId());
     }
 
 }

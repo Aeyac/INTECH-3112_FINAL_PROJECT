@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import FlashToasts from '../components/FlashToasts';
+import FlashToasts from '../Components/FlashToasts';
 import Sidebar from '../Components/Sidebar';
 import Topbar from '../Components/Topbar';
 

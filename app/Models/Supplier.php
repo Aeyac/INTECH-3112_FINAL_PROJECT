@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Supplier extends Model
 {
@@ -37,5 +39,8 @@ class Supplier extends Model
         return $this->hasMany(Purchase::class);
     }
 
-
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query->where('user_id', $user->workspaceId());
+    }
 }
