@@ -6,7 +6,7 @@ use Inertia\Inertia;
 Route::get('/', fn() => Inertia::render('Auth/Login'));
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', fn() => Inertia::render('Home'))->name('home');
+    Route::redirect('/', '/dashboard');
 });
 
 require __DIR__ . '/categories.php';
@@ -16,4 +16,5 @@ require __DIR__ . '/purchases.php';
 require __DIR__ . '/sales.php';
 require __DIR__ . '/stock-ledger.php';
 require __DIR__ . '/admin.php';
+require __DIR__ . '/dashboard.php';
 
