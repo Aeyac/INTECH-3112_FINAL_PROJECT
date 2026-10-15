@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class StockLedger extends Model
 {
@@ -35,6 +37,16 @@ class StockLedger extends Model
     public function item(): BelongsTo
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function getItemNameAttribute(): ?string
+    {
+        return $this->item?->name;
+    }
+
+    public function scopeVisibleTo(Builder $query, User $user): Builder
+    {
+        return $query->whereHas('item', fn(Builder $item) => $item->where('user_id', $user->workspaceId()));
     }
 
 }
