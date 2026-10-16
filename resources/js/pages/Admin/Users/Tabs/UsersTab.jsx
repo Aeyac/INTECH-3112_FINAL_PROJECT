@@ -94,7 +94,7 @@ export default function UsersTab({ users, roles }) {
             </div>
 
             <div className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <div className="hidden max-h-[500px] overflow-x-auto overflow-y-auto md:block">
+                <div className="hidden overflow-x-auto md:block">
                     <table className="w-full min-w-[700px] border-collapse">
                         <thead className="sticky top-0 z-10 bg-gray-50">
                             <tr className="border-b border-gray-200 bg-gray-50 text-[11px] font-bold tracking-wider text-gray-500 uppercase select-none">

@@ -1,6 +1,6 @@
 import { router } from '@inertiajs/react';
 import { Check, Lock, Save } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Button from '../../../../Components/Button';
 import FormCheckbox from '../../../../Components/FormCheckbox';
 
@@ -25,6 +25,10 @@ export default function RolesTab({ permissionMatrix }) {
     const [matrix, setMatrix] = useState(() => flattenMatrix(permissionMatrix));
     const [saving, setSaving] = useState(false);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        setMatrix(flattenMatrix(permissionMatrix));
+    }, [permissionMatrix]);
 
     const dirty = useMemo(
         () =>
@@ -56,10 +60,6 @@ export default function RolesTab({ permissionMatrix }) {
             { permissions: payload },
             {
                 preserveScroll: true,
-                onSuccess: () => {
-                    setSaving(false);
-                    setMatrix(flattenMatrix(permissionMatrix));
-                },
                 onError: (err) => {
                     setError(Object.values(err || {}).join(' '));
                     setSaving(false);
@@ -100,7 +100,7 @@ export default function RolesTab({ permissionMatrix }) {
             )}
 
             <div className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
-                <div className="max-h-[560px] overflow-x-auto overflow-y-auto">
+                <div className="overflow-x-auto">
                     <table className="w-full min-w-[700px] border-collapse">
                         <thead className="sticky top-0 z-10 bg-gray-50">
                             <tr className="border-b border-gray-200 bg-gray-50 text-[11px] font-bold tracking-wider text-gray-500 uppercase select-none">

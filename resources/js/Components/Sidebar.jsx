@@ -18,7 +18,7 @@ export default function Sidebar({ open, onClose }) {
     return (
         <>
             <aside
-                className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col justify-between border-r border-gray-200 bg-white transition-transform duration-200 ease-in-out lg:sticky lg:top-0 lg:z-auto lg:h-screen lg:shrink-0 lg:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'
+                className={`fixed inset-y-0 left-0 z-50 flex w-64 flex-col justify-between border-r border-gray-200 bg-white transition-transform duration-200 ease-in-out lg:sticky lg:top-0 lg:z-auto lg:h-dvh lg:shrink-0 lg:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'
                     }`}
             >
                 <div>
@@ -45,8 +45,8 @@ export default function Sidebar({ open, onClose }) {
                                     key={item.href}
                                     href={item.href}
                                     className={`flex items-center space-x-3 rounded-lg px-4 py-3 text-sm transition ${active
-                                            ? 'bg-gray-100 font-semibold text-gray-900'
-                                            : 'font-medium text-gray-600 hover:bg-gray-50'
+                                        ? 'bg-gray-100 font-semibold text-gray-900'
+                                        : 'font-medium text-gray-600 hover:bg-gray-50'
                                         }`}
                                 >
                                     <Icon className="h-5 w-5" />
